@@ -1,0 +1,26 @@
+name: Ruby
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Ruby 2.5
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 2.5.x
+    - name: Build and test with Rake
+      run: |
+        gem install bundler -v "=1.17.3"
+        bundle install --jobs 4 --retry 3
+        bundle exec rake
+        gem build pgrdsiam.gemspec
+    - name: Publish gem to Github Packages
+      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+      run: |
+        echo -e "---\n:github: Bearer ${{ secrets.GITHUB_TOKEN }}" > ~/.gem/credentials
+        chmod 0600 ~/.gem/credentials
+        bundle config https://rubygems.pkg.github.com/reverbdotcom :${{ secrets.GITHUB_TOKEN }}
+        gem push --key github --host https://rubygems.pkg.github.com/reverbdotcom pgrdsiam*.gem

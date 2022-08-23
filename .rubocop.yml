@@ -1,0 +1,67 @@
+AllCops:
+  Exclude:
+    - "bin/*"
+    - "*.gemspec"
+
+LineLength:
+  Description: Limit lines to 100 characters.
+  Max: 100
+  Enabled: true
+
+Metrics/BlockLength:
+  ExcludedMethods: ['before', 'describe', 'context', 'it', 'let', 'shared_examples_for', 'specify']
+
+Metrics/ClassLength:
+  Enabled: true
+  CountComments: false
+  Max: 400
+
+Metrics/ModuleLength:
+  Enabled: true
+  CountComments: false
+  Max: 400
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+StringLiterals:
+  EnforcedStyle: double_quotes
+  Enabled: true
+
+Style/BracesAroundHashParameters:
+  EnforcedStyle: braces
+  Enabled: false
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Style/DoubleNegation:
+  Enabled: false
+
+Style/Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+ 
+Style/WordArray:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 50
+
+Metrics/AbcSize:
+  Max: 50
+
+Naming/VariableNumber:
+  EnforcedStyle: snake_case
+
+Metrics/ParameterLists:
+  Max: 5
+  CountKeywordArgs: false
+
+Documentation:
+  Enabled: false
+
+Layout/IndentFirstHashElement:
+  EnforcedStyle: consistent
